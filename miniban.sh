@@ -26,6 +26,9 @@ main() {
     readonly whitelist_db='miniban.whitelist'
     readonly ban_db='/tmp/miniban.db'
 
+    # Run unban in the background every minute
+    ( while true; do ./unban.sh "$ban_db"; sleep 60; done ) &
+
     # Authlog is located at auth.log on most systems, except on Open- and NetBSD
     uname | grep -qx -E 'OpenBSD|NetBSD' \
         && readonly auth_log='/var/log/authlog' \
