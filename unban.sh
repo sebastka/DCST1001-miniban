@@ -17,4 +17,5 @@ echo "$file_old_content" | IFS=',' | while read ip timestamp; do
 
         # Remove from ban db
         echo "/$ip/d\nwq" | ed -s "$1" || true
+    fi
 done
