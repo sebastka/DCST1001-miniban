@@ -26,7 +26,7 @@ main() {
     readonly whitelist_db='miniban.whitelist'
     readonly ban_db='/tmp/miniban.db'
 
-    # Authlog is located at auth.log on most systems, exept on Open- and NetBSD
+    # Authlog is located at auth.log on most systems, except on Open- and NetBSD
     uname | grep -qx -E 'OpenBSD|NetBSD' \
         && readonly auth_log='/var/log/authlog' \
         || readonly auth_log='/var/log/auth.log'
