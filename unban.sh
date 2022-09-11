@@ -7,8 +7,9 @@ touch "$1"
 readonly now="$(date +'%s')"
 readonly file_old_content="$(cat "$1")"
 
-# Loop through file and save new db content to $new_db
-echo "$file_old_content" | IFS=',' | while read ip timestamp; do
+# Loop through file content and remove/unban old entries
+IFS=','
+echo "$file_old_content" | while read ip timestamp; do
     if [ $now -le $(echo "$timestamp + 10*60" | bc) ]; then
         # Remove existing rules
         uname | grep -qx 'BSD' \
